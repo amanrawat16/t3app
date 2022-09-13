@@ -1,7 +1,14 @@
+import {trpc} from "@/utils/trpc";
+
 export default function Home() {
+
+  const{data, isLoading}= trpc.useQuery(["hello",{text:"Aman"}]);
+  if(isLoading) return <div>Loading....</div>
+  if(data) return <div>{data.greeting}</div>
+
   return (
   <div className="md:ml-80 md:my-40">
-    <div id="container" className="md:flex flex-row h-full">
+    <div id="container" className="md:flex md:flex-row md:h-full">
       <div id="left_col" className="md:basis-1/4 rounded  bg-[#172466]">
         <div className="md:flex flex-row md:my-16 h-2/3 ">
           <div id="line" className="md:basis-1/4 pl-14 pr-4">
